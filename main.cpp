@@ -168,7 +168,7 @@ void key_press_handler(struct mfb_window* window, mfb_key key, mfb_key_mod mod, 
         {
             data->player->x_old = data->player->x;
             data->player->x -= 20;
-            data->player->xdir = 1;
+            data->player->xdir = -1;
         }
         else if (key == KB_KEY_RIGHT)
         {
