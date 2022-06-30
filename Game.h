@@ -3,21 +3,26 @@
 
 #include "classes/Sprite.h"
 #include "classes/Player.h"
+#include "classes/Ammo.h"
 #include "include/MiniFB_cpp.h"
 #include "include/FreeImage.h"
 
 #define WINDOW_WIDTH    1280
 #define WINDOW_HEIGHT   720
-#define BG_WIDTH        4000
-#define BG_HEIGHT       3000
-#define PLAYER_WIDTH    96
-#define PLAYER_HEIGHT   69
+#define BG_WIDTH        5000
+#define BG_HEIGHT       1000
+#define PLAYER_WIDTH    150
+#define PLAYER_HEIGHT   100
 
 typedef struct
 {
     Player* player;
+    Ammo* ammo;
     Sprite* obstacles;
     uint32_t* buffer;
+    int* bgx;
+    int* bgy;
+    int ammo_cntr;
 } game_data;
 
 void key_press_handler(struct mfb_window* window, mfb_key key, mfb_key_mod mod, bool isPressed);
