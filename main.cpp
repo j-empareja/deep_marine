@@ -115,9 +115,13 @@ int main()
 
     uint8_t* bg = load_asset(FIF_PNG, "assets/bg.png");
 
+    // Player(int width, int height, int x, int y, int xdir, int ydir, int health, int collision, FREE_IMAGE_FORMAT format, const char* filepath);
     Player player = Player(PLAYER_WIDTH, PLAYER_HEIGHT, 0, 0, 0, 0, 3, -1, FIF_PNG, "assets/submarine.png");
+
+    // Ammo(int width, int height, int x, int y, int xdir, int ydir, FREE_IMAGE_FORMAT format, const char* filepath);
     Ammo ammo = Ammo(50, 50, 0, 0, 0, 0, FIF_PNG, "assets/ammo.png");
 
+    // Sprite(int width, int height, int x, int y, int xdir, int ydir, FREE_IMAGE_FORMAT format, const char* filepath);
     Sprite obs1 = Sprite(100, 100, 1000, 0, 0, 0, FIF_PNG, "assets/b1.png");
     Sprite obs2 = Sprite(100, 100, 2310, 360, 0, 0, FIF_PNG, "assets/b1.png");
     Sprite obs3 = Sprite(100, 100, 3000, 620, 0, 0, FIF_PNG, "assets/b1.png");

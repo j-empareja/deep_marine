@@ -140,9 +140,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="classes\Ammo.cpp" />
+    <ClCompile Include="classes\Player.cpp" />
+    <ClCompile Include="classes\Sprite.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="classes\Ammo.h" />
+    <ClInclude Include="classes\Player.h" />
+    <ClInclude Include="classes\Sprite.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="include\FreeImage.h" />
     <ClInclude Include="include\MiniFB.h" />
     <ClInclude Include="include\MiniFB_cpp.h" />
