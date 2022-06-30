@@ -20,19 +20,3 @@ Sprite::Sprite(int width, int height, int x, int y, int xdir, int ydir, FREE_IMA
     this->img = asset;
     this->pitch = FreeImage_GetPitch(fi_asset);   
 }
-
-void Sprite::set_x_old(int x) {
-    this->x_old = x;
-}
-
-void Sprite::set_xdir(int dir) {
-    this->xdir = dir;
-}
-
-void Sprite::set_y_old(int y) {
-    this->y_old = y;
-}
-
-void Sprite::set_ydir(int dir) {
-    this->ydir = dir;
-}
