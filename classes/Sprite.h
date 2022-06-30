@@ -19,9 +19,5 @@ public:
 
     Sprite();
     Sprite(int width, int height, int x, int y, int xdir, int ydir, FREE_IMAGE_FORMAT format, const char* filepath);
-    void set_x_old(int x);
-    void set_xdir(int dir);
-    void set_y_old(int y);
-    void set_ydir(int dir);
 };
 #endif
