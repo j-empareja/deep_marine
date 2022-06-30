@@ -2,7 +2,7 @@
 #include "Sprite.h"
 #include <stdio.h>
 
-Player::Player(int width, int height, int x, int y, int xdir, int ydir, int health, FREE_IMAGE_FORMAT format, const char* filepath) {
+Player::Player(int width, int height, int x, int y, int xdir, int ydir, int health, int collision, FREE_IMAGE_FORMAT format, const char* filepath) {
     this->width = width;
     this->height = height;
     this->x = x;
@@ -11,6 +11,8 @@ Player::Player(int width, int height, int x, int y, int xdir, int ydir, int heal
     this->y = y;
     this->y_old = y;
     this->ydir = ydir;
+    this->health = health;
+    this->collision = collision;
 
     FIBITMAP* fi_asset = FreeImage_Load(format, filepath);
     FreeImage_FlipVertical(fi_asset);
