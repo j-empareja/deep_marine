@@ -17,26 +17,29 @@ int main()
 
     // Player(int width, int height, int x, int y, int xdir, int ydir, int health, int collision, FREE_IMAGE_FORMAT format, const char* filepath);
     Player player = Player(PLAYER_WIDTH, PLAYER_HEIGHT, 0, 0, 0, 0, 3, -1, FIF_PNG, "assets/submarine.png");
-
+    
     // Ammo(int width, int height, int x, int y, int xdir, int ydir, FREE_IMAGE_FORMAT format, const char* filepath);
     Ammo ammo = Ammo(50, 50, 0, 0, 0, 0, FIF_PNG, "assets/ammo.png");
 
     // Sprite(int width, int height, int x, int y, int xdir, int ydir, FREE_IMAGE_FORMAT format, const char* filepath);
-    Sprite obs1 = Sprite(100, 100, 1000, 0, 0, 0, FIF_PNG, "assets/b1.png");
-    Sprite obs2 = Sprite(100, 100, 2310, 360, 0, 0, FIF_PNG, "assets/b1.png");
-    Sprite obs3 = Sprite(100, 100, 3000, 620, 0, 0, FIF_PNG, "assets/b1.png");
-    Sprite obs4 = Sprite(100, 100, 1000, 360, 0, 0, FIF_PNG, "assets/b1.png");
-    //Sprite obs5 = Sprite(100, 100, 160, 0, 0, 0, FIF_PNG, "assets/b1.png");
-    Sprite obstacles[5] = {obs1, obs2, obs3, obs4};
+    Sprite obs1 = Sprite(100, 100, 1000, 0, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs2 = Sprite(100, 100, 2310, 360, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3 = Sprite(100, 100, 3000, 620, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs4 = Sprite(100, 100, 1000, 360, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obstacles[4] = {obs1, obs2, obs3, obs4};
 
-    Sprite mob1 = Sprite(100, 150, 500, 70, 0, 1, FIF_PNG, "assets/b2.png");
-    Sprite mob2 = Sprite(100, 150, 1000, 500, 0, -1, FIF_PNG, "assets/b2.png");
-    Sprite mob3 = Sprite(100, 150, 2500, 500, 0, 1, FIF_PNG, "assets/b2.png");
-    Sprite mob4 = Sprite(100, 150, 1500, 500, -1, 0, FIF_PNG, "assets/b2.png");
-    Sprite mob5 = Sprite(100, 150, 2000, 100, -1, 0, FIF_PNG, "assets/b2.png");
-    Sprite mobs[5] = {mob1, mob2};
+    Sprite mob1 = Sprite(100, 150, 500, 70, 0, 1, true, FIF_PNG, "assets/squid.png");
+    Sprite mob2 = Sprite(100, 150, 1000, 500, 0, -1, true, FIF_PNG, "assets/squid.png");
+    Sprite mob3 = Sprite(100, 150, 2500, 500, 0, 1, true, FIF_PNG, "assets/squid.png");
+    Sprite mob4 = Sprite(100, 150, 1500, 500, -1, 0, true, FIF_PNG, "assets/squid.png");
+    Sprite mob5 = Sprite(100, 150, 2000, 100, -1, 0, true, FIF_PNG, "assets/squid.png");
+    Sprite mobs[5] = {mob1, mob2, mob3, mob4, mob5};
 
-    Sprite life = Sprite(25, 25, 980, 620, 0, 0 , FIF_PNG, "assets/heart25.png");
+    Sprite coral1 = Sprite(100, 100, 500, 0, -1, 1, true, FIF_PNG, "assets/coral.png");
+    Sprite coral2 = Sprite(100, 100, 1500, 500, -1, -1, true, FIF_PNG, "assets/coral.png");
+    Sprite coral3 = Sprite(100, 100, 2500, 400, 0, 1, true, FIF_PNG, "assets/coral.png");
+    Sprite coral4 = Sprite(100, 100, 3500, 100, -1, -1, true, FIF_PNG, "assets/coral.png");
+    Sprite corals[4] = {coral1, coral2, coral3, coral4};
 
     game_data data;
     data.player = &player;
@@ -56,66 +59,71 @@ int main()
     do {
         static int bgx = 0;
         static int bgy = 0;
-        static int x_life = 980;
-        static int y_life = 620;
 
         data.bgx = &bgx;
         data.bgy = &bgy;
 
-        printf("%d\n", player.x);
-        //printf("%d\n", bgx);
         if (!isGameOver) {
             // Game over if an obstacle pushed the player out of bounds or health is 0
             if (player.x < bgx - player.width || player.health == 0)
                 isGameOver = true;
 
             // Check for collisions
-            check_player_obstacle_collision(&player, obstacles, 5); // Player* player, Sprite* obstacles, int obstacle_count ()
-            check_player_mob_collision(&player, mobs, 5);
+            check_player_obstacle_collision(&player, obstacles, bgx, 4);
+            check_player_sprite_collision(&player, mobs, 5, 0);
+            check_player_sprite_collision(&player, corals, 4, 1);
 
             // Scroll bg to the right
-            if (bgx >= BG_WIDTH - WINDOW_WIDTH) bgx = BG_WIDTH - WINDOW_WIDTH;
+            if (bgx >= BG_WIDTH - WINDOW_WIDTH - 1) {
+                bgx = BG_WIDTH - WINDOW_WIDTH - 1;
+
+                printf("Level Finished");
+
+                if (ammo.isFired) {
+                    printf("Next level start\n");
+                    bgx = 0;
+                    data.player->x = 0;
+                }
+            }
             else {
                 if (player.collision != 2) data.player->x += BG_X_DISPLACEMENT; // If there is no collision to the right, update player x pos
                 bgx += BG_X_DISPLACEMENT;
             }
 
-            // Update background based on player's movement
-            update_bg(frame_buffer, bg, bgx, bgy);
+            update_bg(frame_buffer, bg, bgx, bgy); // Update background based on player's movement
+            update_sprite_position(mobs, MOB_X_DISPLACEMENT, MOB_Y_DISPLACEMENT, bgx, 5); // Update mobs positions
+            update_sprite_position(corals, CORAL_X_DISPLACEMENT, CORAL_Y_DISPLACEMENT, bgx, 4); // Update corals positions
 
-            // Display player's sprite
-            display_asset(frame_buffer, &player);
+            display_asset(frame_buffer, &player); // Display player's sprite
 
             // Display obstacles
-            for (int i = 0; i < 4; i++)
-                display_asset(frame_buffer, &obstacles[i]);
-
-            // Display lives
-            display_asset(frame_buffer, &life);
-            //for (int i = 0; i < 25; i++)
-            //{
-            //    for (int j = 0; j < 25; j++)
-            //    {
-            //        uint8_t r = life.img[life.pitch * i + 3 * j + 2];
-            //        uint8_t g = life.img[life.pitch * i + 3 * j + 1];
-            //        uint8_t b = life.img[life.pitch * i + 3 * j];
-            //        uint32_t pixel = (r << 16) | (g << 8) | b;
-            //        if (pixel)
-            //            frame_buffer[WINDOW_WIDTH * (i + y_life) + (j + x_life)] = pixel;
-            //    }
-            //}
-
-
-            // Update mobs positions
-            update_mob_position(mobs, bgx, 5);
+            for (int i = 0; i < 4; i++) {
+                if (obstacles[i].isVisible == true) { // Only display visible obstacles
+                    display_asset(frame_buffer, &obstacles[i]);
+                }            
+            }
 
             // Display mobs
-            for (int i = 0; i < 5; i++)
-                display_asset(frame_buffer, &mobs[i]);
+            for (int i = 0; i < 5; i++) {
+                if (mobs[i].isVisible) { // Only display active/visible mobs
+                    display_asset(frame_buffer, &mobs[i]);
+                }
+            }
 
+            // Display corals
+            for (int i = 0; i < 4; i++) {
+                if (corals[i].isVisible) { // Only display active/visible mobs
+                    display_asset(frame_buffer, &corals[i]);
+                }
+            }
+                
             if (ammo.isFired) {
                 display_asset(frame_buffer, &ammo);
+                check_ammo_collision(&ammo, obstacles, 4);
+                check_ammo_collision(&ammo, mobs, 5);
                 ammo.x += 20;
+
+                if (ammo.x >= bgx + WINDOW_WIDTH) ammo.isFired = false;
             }
         }
         else // Game over
@@ -175,8 +183,8 @@ void key_press_handler(struct mfb_window* window, mfb_key key, mfb_key_mod mod, 
                 }
             }
         }
-        else if (key == KB_KEY_SPACE) {
-            data->ammo->x = data->player->x + data->player->width;
+        else if (key == KB_KEY_SPACE && !(data->ammo->isFired)) {
+            data->ammo->x = data->player->x + data->player->width + BG_X_DISPLACEMENT;
             data->ammo->y = data->player->y + data->player->height / 2 - data->ammo->height / 2;
             data->ammo->isFired = true;
         }
