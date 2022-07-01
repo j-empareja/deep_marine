@@ -15,10 +15,12 @@
 #define PLAYER_HEIGHT           100
 #define PLAYER_X_DISPLACEMENT   10
 #define PLAYER_Y_DISPLACEMENT   10
-#define BG_X_DISPLACEMENT       1
+#define BG_X_DISPLACEMENT       5
 #define BG_Y_DISPLACEMENT       20 
 #define MOB_X_DISPLACEMENT      10
 #define MOB_Y_DISPLACEMENT      10
+#define CORAL_X_DISPLACEMENT    5
+#define CORAL_Y_DISPLACEMENT    5
 
 typedef struct
 {
@@ -35,8 +37,9 @@ void update_bg(uint32_t* buffer, uint8_t* bg, int x_old, int y_old);
 void display_asset(uint32_t* buffer, Sprite* sprite);
 uint8_t* load_asset(FREE_IMAGE_FORMAT format, const char* filepath);
 Sprite* generate_obstacles();
-void check_player_obstacle_collision(Player* player, Sprite* obstacles, int obstacle_count);
-void update_mob_position(Sprite* mobs, int bgx, int mob_count);
-void check_player_mob_collision(Player* player, Sprite* mobs, int mob_count);
+void check_player_obstacle_collision(Player* player, Sprite* obstacles, int bgx, int obstacle_count);
+void update_sprite_position(Sprite* sprites, int x_displacement, int y_displacement, int bgx, int sprite_count);
+void check_player_sprite_collision(Player* player, Sprite* sprites, int sprite_count, int type);
+void check_ammo_collision(Ammo* ammo, Sprite* entities, int entity_count);
 
 #endif
