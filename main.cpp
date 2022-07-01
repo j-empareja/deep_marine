@@ -16,7 +16,7 @@ int main()
     uint8_t* bg = load_asset(FIF_PNG, "assets/bg.png");
 
     // Player(int width, int height, int x, int y, int xdir, int ydir, int health, int collision, FREE_IMAGE_FORMAT format, const char* filepath);
-    Player player = Player(PLAYER_WIDTH, PLAYER_HEIGHT, 0, 0, 0, 0, 3, -1, FIF_PNG, "assets/submarine.png");
+    Player player = Player(PLAYER_WIDTH, PLAYER_HEIGHT, 0, 0, 0, 0, 3, -1, FIF_BMP, "assets/submarineSmall.bmp");
     
     // Ammo(int width, int height, int x, int y, int xdir, int ydir, FREE_IMAGE_FORMAT format, const char* filepath);
     Ammo ammo = Ammo(50, 50, 0, 0, 0, 0, FIF_PNG, "assets/ammo.png");
@@ -40,6 +40,11 @@ int main()
     Sprite coral3 = Sprite(100, 100, 2500, 400, 0, 1, true, FIF_PNG, "assets/coral.png");
     Sprite coral4 = Sprite(100, 100, 3500, 100, -1, -1, true, FIF_PNG, "assets/coral.png");
     Sprite corals[4] = {coral1, coral2, coral3, coral4};
+
+    Sprite life1 = Sprite(25, 25, 1170, 670, 0, 0, true, FIF_PNG, "assets/heart25.png");
+    Sprite life2 = Sprite(25, 25, 1200, 670, 0, 0, true, FIF_PNG, "assets/heart25.png");
+    Sprite life3 = Sprite(25, 25, 1230, 670, 0, 0, true, FIF_PNG, "assets/heart25.png");
+    Sprite lives[3] = {life1, life2, life3};
 
     game_data data;
     data.player = &player;
@@ -88,6 +93,10 @@ int main()
             else {
                 if (player.collision != 2) data.player->x += BG_X_DISPLACEMENT; // If there is no collision to the right, update player x pos
                 bgx += BG_X_DISPLACEMENT;
+
+                for (int i = 0; i < MAX_LIVES; i++) {
+                    lives[i].x += BG_X_DISPLACEMENT;
+                }              
             }
 
             update_bg(frame_buffer, bg, bgx, bgy); // Update background based on player's movement
@@ -112,11 +121,19 @@ int main()
 
             // Display corals
             for (int i = 0; i < 4; i++) {
-                if (corals[i].isVisible) { // Only display active/visible mobs
+                if (corals[i].isVisible) { // Only display active/visible corals
                     display_asset(frame_buffer, &corals[i]);
                 }
             }
-                
+
+            // Display lives
+            for (int i = 0; i < player.health; i++) {
+                if (lives[i].isVisible) {   // Only display active lives
+                    display_asset(frame_buffer, &lives[i]);
+                }
+            }
+            
+            // Weapon fired 
             if (ammo.isFired) {
                 display_asset(frame_buffer, &ammo);
                 check_ammo_collision(&ammo, obstacles, 4);
