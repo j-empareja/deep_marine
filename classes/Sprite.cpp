@@ -4,7 +4,7 @@
 
 Sprite::Sprite() {}
 
-Sprite::Sprite(int width, int height, int x, int y, int xdir, int ydir, FREE_IMAGE_FORMAT format, const char* filepath) {
+Sprite::Sprite(int width, int height, int x, int y, int xdir, int ydir, bool isVisible, FREE_IMAGE_FORMAT format, const char* filepath) {
     this->width = width;
     this->height = height;
     this->x = x;
@@ -13,6 +13,7 @@ Sprite::Sprite(int width, int height, int x, int y, int xdir, int ydir, FREE_IMA
     this->y = y;
     this->y_old = y;
     this->ydir = ydir;
+    this->isVisible = isVisible;
 
     FIBITMAP* fi_asset = FreeImage_Load(format, filepath);
     FreeImage_FlipVertical(fi_asset);
