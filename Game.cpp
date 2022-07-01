@@ -39,6 +39,23 @@ void display_asset(uint32_t* buffer, Sprite* sprite) {
     }
 }
 
+//void display_lives(uint32_t* buffer, Sprite* sprite, int bgx) {
+//    for (int i = 0; i < sprite->height; i++) { // Rows (height)
+//        for (int j = 0; j < sprite->width; j++) { // Cols (width)						   
+//            uint8_t blue = sprite->img[sprite->pitch * i + 3 * j];
+//            uint8_t green = sprite->img[sprite->pitch * i + 3 * j + 1];
+//            uint8_t red = sprite->img[sprite->pitch * i + 3 * j + 2];
+//            uint32_t pixel = (red << 16) | (green << 8) | blue; // BGR format
+//
+//            if (pixel) buffer[BG_WIDTH * (i + sprite->y) + (j + sprite->x)] = pixel; // Filter black color and set pixel location
+//        }
+//    }
+//
+//    if (sprite->x < bgx - (sprite->width)) {
+//        sprite->xdir = 1;
+//    }
+//}
+
 Sprite* generate_obstacles() {
     // Sample
     Sprite obs1 = Sprite(100, 100, 120, 500, 0, 0, FIF_PNG, "assets/b1.png");

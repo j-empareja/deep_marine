@@ -26,14 +26,17 @@ int main()
     Sprite obs2 = Sprite(100, 100, 2310, 360, 0, 0, FIF_PNG, "assets/b1.png");
     Sprite obs3 = Sprite(100, 100, 3000, 620, 0, 0, FIF_PNG, "assets/b1.png");
     Sprite obs4 = Sprite(100, 100, 1000, 360, 0, 0, FIF_PNG, "assets/b1.png");
-    Sprite obstacles[4] = {obs1, obs2, obs3, obs4};
+    //Sprite obs5 = Sprite(100, 100, 160, 0, 0, 0, FIF_PNG, "assets/b1.png");
+    Sprite obstacles[5] = {obs1, obs2, obs3, obs4};
 
     Sprite mob1 = Sprite(100, 150, 500, 70, 0, 1, FIF_PNG, "assets/b2.png");
     Sprite mob2 = Sprite(100, 150, 1000, 500, 0, -1, FIF_PNG, "assets/b2.png");
     Sprite mob3 = Sprite(100, 150, 2500, 500, 0, 1, FIF_PNG, "assets/b2.png");
     Sprite mob4 = Sprite(100, 150, 1500, 500, -1, 0, FIF_PNG, "assets/b2.png");
     Sprite mob5 = Sprite(100, 150, 2000, 100, -1, 0, FIF_PNG, "assets/b2.png");
-    Sprite mobs[5] = {mob1, mob2, mob3, mob4, mob5};
+    Sprite mobs[5] = {mob1, mob2};
+
+    Sprite life = Sprite(25, 25, 980, 620, 0, 0 , FIF_PNG, "assets/heart25.png");
 
     game_data data;
     data.player = &player;
@@ -53,17 +56,21 @@ int main()
     do {
         static int bgx = 0;
         static int bgy = 0;
+        static int x_life = 980;
+        static int y_life = 620;
 
         data.bgx = &bgx;
         data.bgy = &bgy;
 
+        printf("%d\n", player.x);
+        //printf("%d\n", bgx);
         if (!isGameOver) {
             // Game over if an obstacle pushed the player out of bounds or health is 0
             if (player.x < bgx - player.width || player.health == 0)
                 isGameOver = true;
 
             // Check for collisions
-            check_player_obstacle_collision(&player, obstacles, 4);
+            check_player_obstacle_collision(&player, obstacles, 5); // Player* player, Sprite* obstacles, int obstacle_count ()
             check_player_mob_collision(&player, mobs, 5);
 
             // Scroll bg to the right
@@ -82,6 +89,22 @@ int main()
             // Display obstacles
             for (int i = 0; i < 4; i++)
                 display_asset(frame_buffer, &obstacles[i]);
+
+            // Display lives
+            display_asset(frame_buffer, &life);
+            //for (int i = 0; i < 25; i++)
+            //{
+            //    for (int j = 0; j < 25; j++)
+            //    {
+            //        uint8_t r = life.img[life.pitch * i + 3 * j + 2];
+            //        uint8_t g = life.img[life.pitch * i + 3 * j + 1];
+            //        uint8_t b = life.img[life.pitch * i + 3 * j];
+            //        uint32_t pixel = (r << 16) | (g << 8) | b;
+            //        if (pixel)
+            //            frame_buffer[WINDOW_WIDTH * (i + y_life) + (j + x_life)] = pixel;
+            //    }
+            //}
+
 
             // Update mobs positions
             update_mob_position(mobs, bgx, 5);
