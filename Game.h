@@ -21,6 +21,7 @@
 #define MOB_Y_DISPLACEMENT      10
 #define CORAL_X_DISPLACEMENT    5
 #define CORAL_Y_DISPLACEMENT    5
+#define MAX_LIVES               3
 
 typedef struct
 {
@@ -29,17 +30,18 @@ typedef struct
     uint32_t* buffer;
     int* bgx;
     int* bgy;
-    int ammo_cntr;
+    bool* stageStarted;
 } game_data;
 
 void key_press_handler(struct mfb_window* window, mfb_key key, mfb_key_mod mod, bool isPressed);
 void update_bg(uint32_t* buffer, uint8_t* bg, int x_old, int y_old);
-void display_asset(uint32_t* buffer, Sprite* sprite);
+void display_asset(uint32_t* buffer, Sprite* sprite, int x_offset, int y_offset);
 uint8_t* load_asset(FREE_IMAGE_FORMAT format, const char* filepath);
 Sprite* generate_obstacles();
 void check_player_obstacle_collision(Player* player, Sprite* obstacles, int bgx, int obstacle_count);
 void update_sprite_position(Sprite* sprites, int x_displacement, int y_displacement, int bgx, int sprite_count);
-void check_player_sprite_collision(Player* player, Sprite* sprites, int sprite_count, int type);
+void check_player_sprite_collision(Player* player, Sprite* sprites, int bgx, int sprite_count, int type);
 void check_ammo_collision(Ammo* ammo, Sprite* entities, int entity_count);
+void reset_sprite_position(Sprite* sprites, int sprite_count);
 
 #endif
