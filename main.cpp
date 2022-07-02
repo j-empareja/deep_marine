@@ -14,8 +14,8 @@ int main()
     uint32_t* frame_buffer = (uint32_t*)malloc(BG_WIDTH * BG_HEIGHT * 4); // width x height
 
     uint8_t* bg1 = load_asset(FIF_PNG, "assets/bg1.png");
-    uint8_t* bg2 = load_asset(FIF_PNG, "assets/bg2.png");
-    uint8_t* bg3 = load_asset(FIF_PNG, "assets/bg3.png");
+    uint8_t* bg2 = load_asset(FIF_PNG, "assets/bg1.png");
+    uint8_t* bg3 = load_asset(FIF_PNG, "assets/bg1.png");
 
     // Player(int width, int height, int x, int y, int xdir, int ydir, int health, int collision, FREE_IMAGE_FORMAT format, const char* filepath);
     Player player = Player(PLAYER_WIDTH, PLAYER_HEIGHT, 0, 0, 0, 0, 3, -1, FIF_PNG, "assets/submarine.png");
@@ -67,26 +67,139 @@ int main()
     Sprite corals2[3] = {coral21, coral22, coral23};
 
     // Declare stage 3 sprites
-    Sprite obs31 = Sprite(100, 100, 800, 0, 0, 0, true, FIF_PNG, "assets/obs.png");
-    Sprite obs32 = Sprite(100, 100, 750, 0, 0, 0, true, FIF_PNG, "assets/obs.png");
-    Sprite obs33 = Sprite(100, 100, 750, 320, 0, 0, true, FIF_PNG, "assets/obs.png");
-    Sprite obs34 = Sprite(100, 100, 750, 620, 0, 0, true, FIF_PNG, "assets/obs.png");
-    Sprite obs35 = Sprite(100, 100, 2100, 620, 0, 0, true, FIF_PNG, "assets/obs.png");
-    Sprite obs36 = Sprite(100, 100, 4000, 360, 0, 0, true, FIF_PNG, "assets/obs.png");
-    Sprite obstacles3[6] = { obs31, obs32, obs33, obs34, obs35, obs36 };
+    Sprite obs3_1 = Sprite(100, 100, 800, 0, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_2 = Sprite(100, 100, 900, 100, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_3 = Sprite(100, 100, 1000, 200, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_4 = Sprite(100, 100, 1100, 300, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_5 = Sprite(100, 100, 1200, 400, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_6 = Sprite(100, 100, 1300, 500, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_7 = Sprite(100, 100, 1400, 600, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_8 = Sprite(100, 100, 2000, 0, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_9 = Sprite(100, 100, 2100, 100, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_10 = Sprite(100, 100, 2500, 620, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_11 = Sprite(100, 100, 2500, 520, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_12 = Sprite(100, 100, 3000, 0, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_13 = Sprite(100, 100, 3000, 100, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_14 = Sprite(100, 100, 3000, 520, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_15 = Sprite(100, 100, 3000, 620, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_16 = Sprite(100, 100, 3800, 0, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_17 = Sprite(100, 100, 3800, 100, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_18 = Sprite(100, 100, 3900, 0, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_19 = Sprite(100, 100, 3900, 100, 0, 0, true, FIF_PNG, "assets/obs.png");
 
-    Sprite mob31 = Sprite(100, 150, 300, 70, 0, 1, true, FIF_PNG, "assets/squid.png");
-    Sprite mob32 = Sprite(100, 150, 600, 620, 0, -1, true, FIF_PNG, "assets/squid.png");
-    Sprite mob33 = Sprite(100, 150, 1100, 130, -1, 1, true, FIF_PNG, "assets/squid.png");
-    Sprite mob34 = Sprite(100, 150, 2000, 0, -1, 0, true, FIF_PNG, "assets/squid.png");
-    Sprite mob35 = Sprite(100, 150, 4100, 100, -1, 1, true, FIF_PNG, "assets/squid.png");
-    Sprite mob36 = Sprite(100, 150, 4300, 100, -1, 0, true, FIF_PNG, "assets/squid.png");
-    Sprite mobs3[6] = { mob31, mob32, mob33, mob34, mob35, mob36 };
+    Sprite obs3_20 = Sprite(100, 100, 5000, 0, 0, 0, true, FIF_PNG, "assets/obs.png");    // START: long 'w' obstacle
+    Sprite obs3_21 = Sprite(100, 100, 5100, 100, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_22 = Sprite(100, 100, 5200, 200, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_23 = Sprite(100, 100, 5300, 300, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_24 = Sprite(100, 100, 5400, 400, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_25 = Sprite(100, 100, 5500, 500, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_26 = Sprite(100, 100, 5600, 600, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_27 = Sprite(100, 100, 5700, 500, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_28 = Sprite(100, 100, 5800, 400, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_29 = Sprite(100, 100, 5900, 300, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_30 = Sprite(100, 100, 6000, 200, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_31 = Sprite(100, 100, 6100, 100, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_32 = Sprite(100, 100, 6200, 0, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_33 = Sprite(100, 100, 6300, 100, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_34 = Sprite(100, 100, 6400, 200, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_35 = Sprite(100, 100, 6500, 300, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_36 = Sprite(100, 100, 6600, 400, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_37 = Sprite(100, 100, 6700, 500, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_38 = Sprite(100, 100, 6800, 600, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_39 = Sprite(100, 100, 6900, 500, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_40 = Sprite(100, 100, 7000, 400, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_41 = Sprite(100, 100, 7100, 300, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_42 = Sprite(100, 100, 7200, 200, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_43 = Sprite(100, 100, 7300, 100, 0, 0, true, FIF_PNG, "assets/obs.png");    
+    Sprite obs3_44 = Sprite(100, 100, 7400, 0, 0, 0, true, FIF_PNG, "assets/obs.png");    // END: long 'w' obstacle
 
-    Sprite coral31 = Sprite(100, 100, 1000, 0, -1, 1, true, FIF_PNG, "assets/coral.png");
-    Sprite coral32 = Sprite(100, 100, 2000, 500, 0, -1, true, FIF_PNG, "assets/coral.png");
-    Sprite coral33 = Sprite(100, 100, 3000, 400, -1, 1, true, FIF_PNG, "assets/coral.png");
-    Sprite corals3[3] = { coral31, coral32, coral33 };
+    Sprite obs3_45 = Sprite(100, 100, 8400, 0, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_46 = Sprite(100, 100, 8400, 100, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_47 = Sprite(100, 100, 8400, 200, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_48 = Sprite(100, 100, 8400, 300, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_49 = Sprite(100, 100, 8400, 400, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_50 = Sprite(100, 100, 8400, 500, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_51 = Sprite(100, 100, 8400, 600, 0, 0, true, FIF_PNG, "assets/obs.png");
+
+    Sprite obs3_52 = Sprite(100, 100, 9000, 420, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_53 = Sprite(100, 100, 9000, 520, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_54 = Sprite(100, 100, 9000, 620, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_55 = Sprite(100, 100, 9100, 420, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_56 = Sprite(100, 100, 9100, 520, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_57 = Sprite(100, 100, 9100, 620, 0, 0, true, FIF_PNG, "assets/obs.png");
+
+    Sprite obs3_58 = Sprite(100, 100, 9500, 0, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_59 = Sprite(100, 100, 9500, 100, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_60 = Sprite(100, 100, 9500, 200, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_61 = Sprite(100, 100, 9500, 300, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_62 = Sprite(100, 100, 9600, 0, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_63 = Sprite(100, 100, 9600, 100, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_64 = Sprite(100, 100, 9600, 200, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_65 = Sprite(100, 100, 9600, 300, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_66 = Sprite(100, 100, 9700, 0, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_67 = Sprite(100, 100, 9700, 100, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_68 = Sprite(100, 100, 9700, 200, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_69 = Sprite(100, 100, 9700, 300, 0, 0, true, FIF_PNG, "assets/obs.png");
+
+    Sprite obs3_70 = Sprite(100, 100, 10100, 620, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_71 = Sprite(100, 100, 10200, 520, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_72 = Sprite(100, 100, 10200, 620, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_73 = Sprite(100, 100, 10300, 420, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_74 = Sprite(100, 100, 10300, 520, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_75 = Sprite(100, 100, 10300, 620, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_76 = Sprite(100, 100, 10400, 320, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_77 = Sprite(100, 100, 10400, 420, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_78 = Sprite(100, 100, 10400, 520, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_79 = Sprite(100, 100, 10400, 620, 0, 0, true, FIF_PNG, "assets/obs.png");
+
+    Sprite obs3_80 = Sprite(100, 100, 11200, 0, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_81 = Sprite(100, 100, 11200, 100, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_82 = Sprite(100, 100, 11300, 0, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_83 = Sprite(100, 100, 11300, 100, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_84 = Sprite(100, 100, 11300, 200, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_85 = Sprite(100, 100, 11400, 0, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_86 = Sprite(100, 100, 11400, 100, 0, 0, true, FIF_PNG, "assets/obs.png");
+
+    Sprite obs3_87 = Sprite(100, 100, 11700, 420, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_88 = Sprite(100, 100, 11700, 520, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_89 = Sprite(100, 100, 11700, 620, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_90 = Sprite(100, 100, 11800, 0, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_91 = Sprite(100, 100, 11800, 100, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_92 = Sprite(100, 100, 11800, 0, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_93 = Sprite(100, 100, 11800, 100, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_94 = Sprite(100, 100, 11900, 200, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_95 = Sprite(100, 100, 11900, 0, 0, 0, true, FIF_PNG, "assets/obs.png");
+
+    Sprite obs3_96 = Sprite(100, 100, 13100, 320, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_97 = Sprite(100, 100, 13200, 420, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_98 = Sprite(100, 100, 13300, 520, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3_99 = Sprite(100, 100, 13400, 620, 0, 0, true, FIF_PNG, "assets/obs.png");
+
+
+
+    Sprite obstacles3[100] = { obs3_1, obs3_2, obs3_3, obs3_4, obs3_5, obs3_6, obs3_7, obs3_8, obs3_9, obs3_10, 
+                              obs3_11, obs3_12, obs3_13, obs3_14, obs3_15, obs3_16, obs3_17, obs3_18, obs3_19, obs3_20,
+                              obs3_21, obs3_22, obs3_23, obs3_24, obs3_25, obs3_26, obs3_27, obs3_28, obs3_29, obs3_30,
+                              obs3_31, obs3_32, obs3_33, obs3_34, obs3_35, obs3_36, obs3_37, obs3_38, obs3_39, obs3_40,
+                              obs3_41, obs3_42, obs3_43, obs3_44, obs3_45, obs3_46, obs3_47, obs3_48, obs3_49, obs3_50,
+                              obs3_51, obs3_52, obs3_53, obs3_54, obs3_55, obs3_56, obs3_57, obs3_58, obs3_59, obs3_60, 
+                              obs3_61, obs3_62, obs3_63, obs3_64, obs3_65, obs3_66, obs3_67, obs3_68, obs3_69, obs3_70,
+                              obs3_71, obs3_72, obs3_73, obs3_74, obs3_75, obs3_76, obs3_77, obs3_78, obs3_79, obs3_80,
+                              obs3_81, obs3_82, obs3_83, obs3_84, obs3_85, obs3_86, obs3_87, obs3_88, obs3_89, obs3_90,
+                              obs3_81, obs3_92, obs3_93, obs3_94, obs3_95, obs3_96, obs3_97, obs3_98, obs3_99 };
+
+    Sprite mob3_1 = Sprite(100, 150, 600, 0, -1, 0, true, FIF_PNG, "assets/squid.png");
+    Sprite mob3_2 = Sprite(100, 150, 3000, 200, -1, 0, true, FIF_PNG, "assets/squid.png");
+    Sprite mob3_3 = Sprite(100, 150, 3200, 400, -1, 0, true, FIF_PNG, "assets/squid.png");
+    Sprite mob3_4 = Sprite(100, 150, 4800, 0, 0, 1, true, FIF_PNG, "assets/squid.png");
+    Sprite mob3_5 = Sprite(100, 150, 8000, 520, 0, 1, true, FIF_PNG, "assets/squid.png");
+    Sprite mob3_6 = Sprite(100, 150, 14000, 500, -1, 0, true, FIF_PNG, "assets/squid.png");
+    Sprite mobs3[6] = { mob3_1, mob3_2, mob3_3, mob3_4, mob3_5, mob3_6 };
+
+    Sprite coral3_1 = Sprite(100, 100, 3500, 620, 0, 0, true, FIF_PNG, "assets/coral.png");
+    Sprite coral3_2 = Sprite(100, 100, 6200, 400, 0, 0, true, FIF_PNG, "assets/coral.png");
+    Sprite coral3_3 = Sprite(100, 100, 8800, 620, -1, 1, true, FIF_PNG, "assets/coral.png");
+    Sprite corals3[3] = { coral3_1, coral3_2, coral3_3 };
 
     Sprite life1 = Sprite(25, 25, 1170, 670, 0, 0, true, FIF_PNG, "assets/heart25.png");
     Sprite life2 = Sprite(25, 25, 1200, 670, 0, 0, true, FIF_PNG, "assets/heart25.png");
@@ -182,7 +295,7 @@ int main()
                 current_obstacles = obstacles3;
                 current_mobs = mobs3;
                 current_corals = corals3;
-                obstacle_count = 6;
+                obstacle_count = 100;
                 mob_count = 6;
                 coral_count = 3;
 
