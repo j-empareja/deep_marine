@@ -26,7 +26,7 @@ void update_bg(uint32_t* buffer, uint8_t* bg, int x_old, int y_old) {
     }
 }
 
-void display_asset(uint32_t* buffer, Sprite* sprite) {
+void display_asset(uint32_t* buffer, Sprite* sprite, int x_offset, int y_offset) {
     for (int i = 0; i < sprite->height; i++) { // Rows (height)
         for (int j = 0; j < sprite->width; j++) { // Cols (width)						   
             uint8_t blue = sprite->img[sprite->pitch * i + 3 * j];
@@ -34,16 +34,16 @@ void display_asset(uint32_t* buffer, Sprite* sprite) {
             uint8_t red = sprite->img[sprite->pitch * i + 3 * j + 2];
             uint32_t pixel = (red << 16) | (green << 8) | blue; // BGR format
 
-            if (pixel) buffer[BG_WIDTH * (i + sprite->y) + (j + sprite->x)] = pixel; // Filter black color and set pixel location
+            if (pixel) buffer[BG_WIDTH * (i + sprite->y + y_offset) + (j + sprite->x + x_offset)] = pixel; // Filter black color and set pixel location
         }
     }
 }
 
 Sprite* generate_obstacles() {
     // Sample
-    Sprite obs1 = Sprite(100, 100, 120, 500, 0, 0, true, FIF_PNG, "assets/b1.png");
-    Sprite obs2 = Sprite(100, 100, 0, 0, 0, 0, true, FIF_PNG, "assets/b1.png");
-    Sprite obs3 = Sprite(100, 100, 3000, 1000, 0, 0, true, FIF_PNG, "assets/b1.png");
+    Sprite obs1 = Sprite(100, 100, 120, 500, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs2 = Sprite(100, 100, 0, 0, 0, 0, true, FIF_PNG, "assets/obs.png");
+    Sprite obs3 = Sprite(100, 100, 3000, 1000, 0, 0, true, FIF_PNG, "assets/obs.png");
 
     Sprite obstacles[3] = { obs1, obs2, obs3 };
 
@@ -91,7 +91,8 @@ void check_player_obstacle_collision(Player* player, Sprite* obstacles, int bgx,
 
 void update_sprite_position(Sprite* sprites, int x_displacement, int y_displacement, int bgx, int sprite_count) {
     for (int i = 0; i < sprite_count; i++) {
-        if ((sprites + i)->isVisible) { // Only update position of active/visible sprites
+        // Only update position of active/visible sprites
+        if ((sprites + i)->x >= bgx - (sprites + i)->width && (sprites + i)->x <= bgx + WINDOW_WIDTH - 1 && (sprites + i)->isVisible) { 
             if ((sprites + i)->xdir == -1) { // Move left
                 (sprites + i)->x -= x_displacement;
             }
@@ -109,34 +110,40 @@ void update_sprite_position(Sprite* sprites, int x_displacement, int y_displacem
             }
 
             if ((sprites + i)->y >= BG_HEIGHT - (sprites + i)->height - 1) { // Lower bound touched
+                (sprites + i)->y = BG_HEIGHT - (sprites + i)->height - 1;
                 (sprites + i)->ydir = -1;
             }
-            else if ((sprites + i)->y <= 0) {// Upper bound touched
+            else if ((sprites + i)->y <= 0) { // Upper bound touched
+                (sprites + i)->y = 0;
                 (sprites + i)->ydir = 1;
             }
         }
     }
 }
 
-void check_player_sprite_collision(Player* player, Sprite* sprites, int sprite_count, int type) {
+void check_player_sprite_collision(Player* player, Sprite* sprites, int bgx, int sprite_count, int type) {
     int player_right = player->x + player->width;
     int player_bot = player->y + player->height;
 
     // Iterate over obstacles to determine collisions
     for (int i = 0; i < sprite_count; i++) {
-        if ((sprites + i)->isVisible) { // Only check for active/visible mobs or corals
+        // Only check for active/visible mobs or corals
+        if ((sprites + i)->x >= bgx - (sprites + i)->width && (sprites + i)->x <= bgx + WINDOW_WIDTH - 1 && (sprites + i)->isVisible) { 
             int obstacle_right = (sprites + i)->x + (sprites + i)->width;
             int obstacle_bot = (sprites + i)->y + (sprites + i)->height;
 
             if (player_right >= (sprites + i)->x && obstacle_right >= player->x) { // Check collision in the x-axis
                 if (player_bot >= (sprites + i)->y && obstacle_bot >= player->y) { // Check collision in the y-axis
-                    if (type == 0) // Collision with a mob
+                    if (type == 0) { // Collision with a mob
                         player->health--; // Decrement health
-                    else // Collision with a coral
-                        player->health++;
+                    }
+                    else { // Collision with a coral
+                        if (player->health < MAX_LIVES) {
+                            player->health++;
+                        }  
+                    }
 
-                    (sprites + i)->isVisible = false; // Remove sprite from the screen
-                    printf("health: %d\n", player->health); 
+                    (sprites + i)->isVisible = false; // Remove sprite from the screen 
                 }
             }
         }
@@ -161,5 +168,13 @@ void check_ammo_collision(Ammo* ammo, Sprite* entities, int entity_count) {
                 }
             }
         }
+    }
+}
+
+void reset_sprite_position(Sprite* sprites, int sprite_count) {
+    for (int i = 0; i < sprite_count; i++) {
+        (sprites + i)->x = (sprites + i)->x_initial;
+        (sprites + i)->y = (sprites + i)->y_initial;
+        (sprites + i)->isVisible = true;
     }
 }
