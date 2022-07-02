@@ -9,9 +9,11 @@ Sprite::Sprite(int width, int height, int x, int y, int xdir, int ydir, bool isV
     this->height = height;
     this->x = x;
     this->x_old = x;
+    this->x_initial = x;
     this->xdir = xdir;
     this->y = y;
     this->y_old = y;
+    this->y_initial = y;
     this->ydir = ydir;
     this->isVisible = isVisible;
 
