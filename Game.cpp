@@ -1,7 +1,6 @@
 #include <stdio.h>
 
 #include "Game.h"
-#include "classes/Player.h"
 
 uint8_t* load_asset(FREE_IMAGE_FORMAT format, const char* filepath) {
     FIBITMAP* asset_fi = FreeImage_Load(format, filepath);
