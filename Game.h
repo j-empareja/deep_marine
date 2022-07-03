@@ -17,8 +17,8 @@
 #define PLAYER_Y_DISPLACEMENT   10
 #define BG_X_DISPLACEMENT       5
 #define BG_Y_DISPLACEMENT       20 
-#define MOB_X_DISPLACEMENT      10
-#define MOB_Y_DISPLACEMENT      10
+#define MOB_X_DISPLACEMENT      5
+#define MOB_Y_DISPLACEMENT      5
 #define CORAL_X_DISPLACEMENT    5
 #define CORAL_Y_DISPLACEMENT    5
 #define MAX_LIVES               3
@@ -39,8 +39,8 @@ typedef struct
 void key_press_handler(struct mfb_window* window, mfb_key key, mfb_key_mod mod, bool isPressed);
 void update_bg(uint32_t* buffer, uint8_t* bg, int x_old, int y_old);
 void display_asset(uint32_t* buffer, Sprite* sprite, int x_offset, int y_offset);
+void display_player(uint32_t* buffer, Player* player, int x_offset, int y_offset);
 uint8_t* load_asset(FREE_IMAGE_FORMAT format, const char* filepath);
-Sprite* generate_obstacles();
 void check_player_obstacle_collision(Player* player, Sprite* obstacles, int bgx, int obstacle_count);
 void update_sprite_position(Sprite* sprites, int x_displacement, int y_displacement, int bgx, int sprite_count);
 void check_player_sprite_collision(Player* player, Sprite* sprites, int bgx, int sprite_count, int type);
