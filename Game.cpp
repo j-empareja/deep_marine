@@ -2,6 +2,7 @@
 
 #include "Game.h"
 
+// Retrieve the bits of an asset
 uint8_t* load_asset(FREE_IMAGE_FORMAT format, const char* filepath) {
     FIBITMAP* asset_fi = FreeImage_Load(format, filepath);
     FreeImage_FlipVertical(asset_fi);
@@ -10,6 +11,7 @@ uint8_t* load_asset(FREE_IMAGE_FORMAT format, const char* filepath) {
     return asset;
 }
 
+// Update background
 void update_bg(uint32_t* buffer, uint8_t* bg, int x_old, int y_old) {
     for (int i = 0; i < WINDOW_HEIGHT; i++) // rows (height)
     {
@@ -25,6 +27,7 @@ void update_bg(uint32_t* buffer, uint8_t* bg, int x_old, int y_old) {
     }
 }
 
+// Display an asset
 void display_asset(uint32_t* buffer, Sprite* sprite, int x_offset, int y_offset) {
     for (int i = 0; i < sprite->height; i++) { // Rows (height)
         for (int j = 0; j < sprite->width; j++) { // Cols (width)						   
@@ -38,6 +41,21 @@ void display_asset(uint32_t* buffer, Sprite* sprite, int x_offset, int y_offset)
     }
 }
 
+// Display player sprite (with motion)
+void display_player(uint32_t* buffer, Player* player, int x_offset, int y_offset) {
+    for (int i = 0; i < player->height; i++) { // Rows (height)
+        for (int j = 0; j < player->width; j++) { // Cols (width)						   
+            uint8_t blue = player->sprites[player->sprite_var][player->pitch * i + 3 * j];
+            uint8_t green = player->sprites[player->sprite_var][player->pitch * i + 3 * j + 1];
+            uint8_t red = player->sprites[player->sprite_var][player->pitch * i + 3 * j + 2];
+            uint32_t pixel = (red << 16) | (green << 8) | blue; // BGR format
+
+            if (pixel) buffer[BG_WIDTH * (i + player->y + y_offset) + (j + player->x + x_offset)] = pixel; // Filter black color and set pixel location
+        }
+    }
+}
+
+// Check collision between player and stationary obstacles
 void check_player_obstacle_collision(Player* player, Sprite* obstacles, int bgx, int obstacle_count) {
     player->collision = -1; // Reset collision flag
     int player_right = player->x + player->width;
@@ -77,6 +95,7 @@ void check_player_obstacle_collision(Player* player, Sprite* obstacles, int bgx,
     }
 }
 
+// Update the positions of mobs
 void update_sprite_position(Sprite* sprites, int x_displacement, int y_displacement, int bgx, int sprite_count) {
     for (int i = 0; i < sprite_count; i++) {
         // Only update position of active/visible sprites
@@ -109,6 +128,7 @@ void update_sprite_position(Sprite* sprites, int x_displacement, int y_displacem
     }
 }
 
+// Check collision between player and mobs
 void check_player_sprite_collision(Player* player, Sprite* sprites, int bgx, int sprite_count, int type) {
     int player_right = player->x + player->width;
     int player_bot = player->y + player->height;
@@ -138,10 +158,10 @@ void check_player_sprite_collision(Player* player, Sprite* sprites, int bgx, int
     }
 }
 
+// Check collision between ammo and mobs/obstacles
 void check_ammo_collision(Ammo* ammo, Sprite* entities, int entity_count) {
     int ammo_right = ammo->x + ammo->width;
     int ammo_bot = ammo->y + ammo->height;
-    int entity_right, entity_bot;
 
     // Iterate over obstacles to determine collisions
     for (int i = 0; i < entity_count; i++) {
@@ -159,6 +179,7 @@ void check_ammo_collision(Ammo* ammo, Sprite* entities, int entity_count) {
     }
 }
 
+// Reset sprite attributes to initial values when game restarted
 void reset_sprite_attributes(Sprite* sprites, int sprite_count) {
     for (int i = 0; i < sprite_count; i++) {
         (sprites + i)->x = (sprites + i)->x_initial;
@@ -168,3 +189,4 @@ void reset_sprite_attributes(Sprite* sprites, int sprite_count) {
         (sprites + i)->isVisible = true;
     }
 }
+
