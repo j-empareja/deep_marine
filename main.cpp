@@ -18,8 +18,8 @@ int main()
     uint8_t* bg3 = load_asset(FIF_PNG, "assets/bg3.png");
 
     // Player(int width, int height, int x, int y, int xdir, int ydir, int health, int collision, FREE_IMAGE_FORMAT format, const char* filepath);
-    Player player = Player(PLAYER_WIDTH, PLAYER_HEIGHT, 0, 0, 0, 0, 3, -1, FIF_PNG, "assets/sub12.png");
-
+    Player player = Player(PLAYER_WIDTH, PLAYER_HEIGHT, 0, 0, 0, 0, 3, -1, FIF_PNG);
+    
     // Ammo(int width, int height, int x, int y, int xdir, int ydir, FREE_IMAGE_FORMAT format, const char* filepath);
     Ammo ammo = Ammo(50, 50, 0, 0, 0, 0, FIF_PNG, "assets/ammo.png");
 
@@ -29,26 +29,26 @@ int main()
     Sprite obs1_2 = Sprite(100, 100, 500, 100, 0, 0, true, FIF_PNG, "assets/stone.png");
     Sprite obs1_3 = Sprite(100, 100, 1400, 0, 0, 0, true, FIF_PNG, "assets/stone.png");
     Sprite obs1_4 = Sprite(100, 100, 1400, 100, 0, 0, true, FIF_PNG, "assets/stone.png");
-    Sprite obs1_5 = Sprite(100, 100, 1400, 420, 0, 0, true, FIF_PNG, "assets/stone.png");
+    Sprite obs1_5 = Sprite(100, 100, 1400, 420, 0, 0, true, FIF_PNG, "assets/seaweed.png");
     Sprite obs1_6 = Sprite(100, 100, 1400, 520, 0, 0, true, FIF_PNG, "assets/stone.png");
     Sprite obs1_7 = Sprite(100, 100, 1400, 620, 0, 0, true, FIF_PNG, "assets/stone.png");
     Sprite obs1_8 = Sprite(100, 100, 3500, 0, 0, 0, true, FIF_PNG, "assets/stone.png");
     Sprite obs1_9 = Sprite(100, 100, 3500, 310, 0, 0, true, FIF_PNG, "assets/stone.png");
-    Sprite obs1_10 = Sprite(100, 100, 3500, 620, 0, 0, true, FIF_PNG, "assets/stone.png");
-    Sprite obs1_11 = Sprite(100, 100, 6000, 420, 0, 0, true, FIF_PNG, "assets/stone.png");
+    Sprite obs1_10 = Sprite(100, 100, 3500, 620, 0, 0, true, FIF_PNG, "assets/seaweed.png");
+    Sprite obs1_11 = Sprite(100, 100, 6000, 420, 0, 0, true, FIF_PNG, "assets/seaweed.png");
     Sprite obs1_12 = Sprite(100, 100, 6000, 520, 0, 0, true, FIF_PNG, "assets/stone.png");
     Sprite obs1_13 = Sprite(100, 100, 6000, 620, 0, 0, true, FIF_PNG, "assets/stone.png");
-    Sprite obs1_14 = Sprite(100, 100, 7700, 0, 0, 0, true, FIF_PNG, "assets/stone.png");
+    Sprite obs1_14 = Sprite(100, 100, 7700, 210, 0, 0, true, FIF_PNG, "assets/seaweed.png");
     Sprite obs1_15 = Sprite(100, 100, 7700, 310, 0, 0, true, FIF_PNG, "assets/stone.png");
     Sprite obs1_16 = Sprite(100, 100, 7700, 620, 0, 0, true, FIF_PNG, "assets/stone.png");
     Sprite obs1_17 = Sprite(100, 100, 10500, 0, 0, 0, true, FIF_PNG, "assets/stone.png");
     Sprite obs1_18 = Sprite(100, 100, 10500, 310, 0, 0, true, FIF_PNG, "assets/stone.png");
-    Sprite obs1_19 = Sprite(100, 100, 10500, 620, 0, 0, true, FIF_PNG, "assets/stone.png");
+    Sprite obs1_19 = Sprite(100, 100, 10500, 620, 0, 0, true, FIF_PNG, "assets/seaweed.png");
     Sprite obs1_20 = Sprite(100, 100, 14000, 0, 0, 0, true, FIF_PNG, "assets/stone.png");
     Sprite obs1_21 = Sprite(100, 100, 14000, 310, 0, 0, true, FIF_PNG, "assets/stone.png");
-    Sprite obs1_22 = Sprite(100, 100, 14000, 620, 0, 0, true, FIF_PNG, "assets/stone.png");
-    Sprite obstacles1[22] = {obs1_1, obs1_2, obs1_3, obs1_4, obs1_5, obs1_6, obs1_7, obs1_8, obs1_9, obs1_10, obs1_11, 
-                             obs1_12, obs1_13, obs1_14, obs1_15, obs1_16, obs1_17, obs1_18, obs1_19, obs1_20, obs1_21};
+    Sprite obs1_22 = Sprite(100, 100, 14000, 620, 0, 0, true, FIF_PNG, "assets/seaweed.png");
+    Sprite obstacles1[22] = { obs1_1, obs1_2, obs1_3, obs1_4, obs1_5, obs1_6, obs1_7, obs1_8, obs1_9, obs1_10, obs1_11,
+                             obs1_12, obs1_13, obs1_14, obs1_15, obs1_16, obs1_17, obs1_18, obs1_19, obs1_20, obs1_21 };
 
     Sprite mob1_1 = Sprite(150, 100, 800, 500, -1, 0, true, FIF_PNG, "assets/shark.png");
     Sprite mob1_2 = Sprite(150, 100, 1700, 310, -1, 0, true, FIF_PNG, "assets/shark.png");
@@ -62,13 +62,13 @@ int main()
     Sprite mob1_10 = Sprite(150, 100, 9500, 100, -1, 0, true, FIF_PNG, "assets/shark.png");
     Sprite mob1_11 = Sprite(150, 100, 12000, 200, -1, 0, true, FIF_PNG, "assets/shark.png");
     Sprite mob1_12 = Sprite(150, 100, 13000, 400, -1, 0, true, FIF_PNG, "assets/shark.png");
-    Sprite mobs1[12] = { mob1_1, mob1_2, mob1_3, mob1_4, mob1_5, mob1_6, mob1_7, mob1_8, mob1_9, mob1_10, mob1_11, mob1_12};
+    Sprite mobs1[12] = { mob1_1, mob1_2, mob1_3, mob1_4, mob1_5, mob1_6, mob1_7, mob1_8, mob1_9, mob1_10, mob1_11, mob1_12 };
 
     Sprite coral1 = Sprite(100, 100, 500, 0, -1, 1, true, FIF_PNG, "assets/coral.png");
     Sprite coral2 = Sprite(100, 100, 1500, 500, -1, -1, true, FIF_PNG, "assets/coral.png");
     Sprite coral3 = Sprite(100, 100, 2500, 400, 0, 1, true, FIF_PNG, "assets/coral.png");
     Sprite coral4 = Sprite(100, 100, 3500, 100, -1, -1, true, FIF_PNG, "assets/coral.png");
-    Sprite corals1[4] = {coral1, coral2, coral3, coral4};
+    Sprite corals1[4] = { coral1, coral2, coral3, coral4 };
 
     // Declare stage 2 sprites
     // LETTER C
@@ -102,7 +102,7 @@ int main()
     Sprite obs2_26 = Sprite(100, 100, 3300, 300, 0, 0, true, FIF_PNG, "assets/stone.png");
     Sprite obs2_27 = Sprite(100, 100, 3400, 300, 0, 0, true, FIF_PNG, "assets/stone.png");
     Sprite obs2_28 = Sprite(100, 100, 3400, 200, 0, 0, true, FIF_PNG, "assets/stone.png");
-    
+
     // LETTER E
     Sprite obs2_29 = Sprite(100, 100, 4000, 0, 0, 0, true, FIF_PNG, "assets/stone.png");
     Sprite obs2_30 = Sprite(100, 100, 4000, 100, 0, 0, true, FIF_PNG, "assets/stone.png");
@@ -178,7 +178,7 @@ int main()
     Sprite obs2_92 = Sprite(100, 100, 8300, 600, 0, 0, true, FIF_PNG, "assets/stone.png");
     Sprite obs2_93 = Sprite(100, 100, 8400, 600, 0, 0, true, FIF_PNG, "assets/stone.png");
 
-    Sprite obstacles2[93] = {obs2_1, obs2_2, obs2_3, obs2_4, obs2_5, obs2_6, obs2_7, obs2_8, obs2_9, 
+    Sprite obstacles2[93] = { obs2_1, obs2_2, obs2_3, obs2_4, obs2_5, obs2_6, obs2_7, obs2_8, obs2_9,
         obs2_10, obs2_11, obs2_12, obs2_13, obs2_14, obs2_15, obs2_16, obs2_17, obs2_18, obs2_19,
         obs2_20, obs2_21, obs2_22, obs2_23, obs2_24, obs2_25, obs2_26, obs2_27, obs2_28, obs2_29,
         obs2_30, obs2_31, obs2_32, obs2_33, obs2_34, obs2_35, obs2_36, obs2_37, obs2_38, obs2_39,
@@ -186,8 +186,8 @@ int main()
         obs2_50, obs2_51, obs2_52, obs2_53, obs2_54, obs2_55, obs2_56, obs2_57, obs2_58, obs2_59,
         obs2_60, obs2_61, obs2_62, obs2_63, obs2_64,obs2_65, obs2_66, obs2_67, obs2_68, obs2_69,
         obs2_70, obs2_71,obs2_72, obs2_73, obs2_74, obs2_75, obs2_76, obs2_77, obs2_78, obs2_79,
-        obs2_80, obs2_81, obs2_82, obs2_83, obs2_84, obs2_85, obs2_86, obs2_87, obs2_88, obs2_89, 
-        obs2_90, obs2_91, obs2_92, obs2_93};
+        obs2_80, obs2_81, obs2_82, obs2_83, obs2_84, obs2_85, obs2_86, obs2_87, obs2_88, obs2_89,
+        obs2_90, obs2_91, obs2_92, obs2_93 };
 
     Sprite mob2_1 = Sprite(100, 150, 300, 70, 0, 1, true, FIF_PNG, "assets/squid.png");
     Sprite mob2_2 = Sprite(100, 150, 600, 620, 0, -1, true, FIF_PNG, "assets/squid.png");
@@ -201,13 +201,13 @@ int main()
     Sprite mob2_10 = Sprite(100, 150, 11000, 0, 0, -1, true, FIF_PNG, "assets/squid.png");
     Sprite mob2_11 = Sprite(150, 100, 14000, 0, -1, 0, true, FIF_PNG, "assets/shark.png");
     Sprite mob2_12 = Sprite(150, 100, 14500, 620, -1, 0, true, FIF_PNG, "assets/shark.png");
-    Sprite mobs2[12] = {mob2_1, mob2_2, mob2_3, mob2_4, mob2_5, mob2_6, mob2_7, mob2_8, mob2_9, 
-        mob2_10, mob2_11, mob2_12};
+    Sprite mobs2[12] = { mob2_1, mob2_2, mob2_3, mob2_4, mob2_5, mob2_6, mob2_7, mob2_8, mob2_9,
+        mob2_10, mob2_11, mob2_12 };
 
     Sprite coral2_1 = Sprite(100, 100, 1000, 0, -1, 1, true, FIF_PNG, "assets/coral.png");
     Sprite coral2_2 = Sprite(100, 100, 2000, 500, 0, -1, true, FIF_PNG, "assets/coral.png");
     Sprite coral2_3 = Sprite(100, 100, 3000, 400, -1, 1, true, FIF_PNG, "assets/coral.png");
-    Sprite corals2[3] = {coral2_1, coral2_2, coral2_3};
+    Sprite corals2[3] = { coral2_1, coral2_2, coral2_3 };
 
     // Declare stage 3 sprites
     Sprite obs3_1 = Sprite(100, 100, 800, 0, 0, 0, true, FIF_PNG, "assets/stone.png");
@@ -342,18 +342,18 @@ int main()
     Sprite mob3_11 = Sprite(150, 100, 11100, 300, -1, 0, true, FIF_PNG, "assets/shark.png");
     Sprite mob3_12 = Sprite(150, 100, 11200, 500, -1, 0, true, FIF_PNG, "assets/shark.png");
     Sprite mob3_13 = Sprite(100, 150, 14000, 500, -1, 1, true, FIF_PNG, "assets/squid.png");
-    
-    Sprite mobs3[13] = {mob3_1, mob3_2, mob3_3, mob3_4, mob3_5, mob3_6, mob3_7, mob3_8, mob3_9, mob3_10, mob3_11, mob3_12, mob3_13};
+
+    Sprite mobs3[13] = { mob3_1, mob3_2, mob3_3, mob3_4, mob3_5, mob3_6, mob3_7, mob3_8, mob3_9, mob3_10, mob3_11, mob3_12, mob3_13 };
 
     Sprite coral31 = Sprite(100, 100, 1000, 0, -1, 1, true, FIF_PNG, "assets/coral.png");
     Sprite coral32 = Sprite(100, 100, 2000, 500, 0, -1, true, FIF_PNG, "assets/coral.png");
     Sprite coral33 = Sprite(100, 100, 3000, 400, -1, 1, true, FIF_PNG, "assets/coral.png");
-    Sprite corals3[3] = {coral31, coral32, coral33};
+    Sprite corals3[3] = { coral31, coral32, coral33 };
 
     Sprite life1 = Sprite(50, 50, 1050, 660, 0, 0, true, FIF_PNG, "assets/heart.png");
     Sprite life2 = Sprite(50, 50, 1125, 660, 0, 0, true, FIF_PNG, "assets/heart.png");
     Sprite life3 = Sprite(50, 50, 1200, 660, 0, 0, true, FIF_PNG, "assets/heart.png");
-    Sprite lives[3] = {life1, life2, life3};
+    Sprite lives[3] = { life1, life2, life3 };
 
     Sprite start1 = Sprite(1280, 720, 0, 0, 0, 0, true, FIF_PNG, "assets/start1.png");
     Sprite start2 = Sprite(1280, 720, 0, 0, 0, 0, true, FIF_PNG, "assets/start2.png");
@@ -394,6 +394,14 @@ int main()
 
         data.bgx = &bgx;
 
+        // Sprite animation
+        if (bgx % 20 == 0) { // Animate sprite every 50px
+            if (player.sprite_var < 11)
+                player.sprite_var++;
+            else
+                player.sprite_var = 0;
+        }
+
         if (isContinued) {
             if (stage == 1) { // Set stage 1 parameters
                 // Update set of sprites
@@ -403,6 +411,7 @@ int main()
                 obstacle_count = 22;
                 mob_count = 12;
                 coral_count = 4;
+                player.sprite_var = 0;
 
                 if (restarted) { // Set the sprites' positions to their initial positions
                     reset_sprite_attributes(obstacles1, obstacle_count);
@@ -419,7 +428,7 @@ int main()
                     frame_buffer[i / 3] = (current_bg[i + 2] << 16) | (current_bg[i + 1] << 8) | current_bg[i];
                 }
 
-                display_asset(frame_buffer, &player, 0, 0); // Display player's sprite
+                display_player(frame_buffer, &player, 0, 0); // Display player's sprite
                 display_asset(frame_buffer, &start1, 0, 0); // Display stage prompt
             }
             else if (stage == 2) { // Set stage 2 parameters
@@ -430,6 +439,7 @@ int main()
                 obstacle_count = 93;
                 mob_count = 12;
                 coral_count = 3;
+                player.sprite_var = 0;
 
                 if (restarted) { // Set the sprites' positions to their initial positions
                     reset_sprite_attributes(obstacles2, obstacle_count);
@@ -446,7 +456,7 @@ int main()
                     frame_buffer[i / 3] = (current_bg[i + 2] << 16) | (current_bg[i + 1] << 8) | current_bg[i];
                 }
 
-                display_asset(frame_buffer, &player, 0, 0); // Display player's sprite
+                display_player(frame_buffer, &player, 0, 0); // Display player's sprite
                 display_asset(frame_buffer, &start2, 0, 0); // Display stage prompt
             }
             else { // Set stage 3 parameters
@@ -457,6 +467,7 @@ int main()
                 obstacle_count = 100;
                 mob_count = 13;
                 coral_count = 3;
+                player.sprite_var = 0;
 
                 if (restarted) { // Set the sprites' positions to their initial positions
                     reset_sprite_attributes(obstacles3, obstacle_count);
@@ -473,7 +484,7 @@ int main()
                     frame_buffer[i / 3] = (current_bg[i + 2] << 16) | (current_bg[i + 1] << 8) | current_bg[i];
                 }
 
-                display_asset(frame_buffer, &player, 0, 0); // Display player's sprite
+                display_player(frame_buffer, &player, 0, 0); // Display player's sprite
                 display_asset(frame_buffer, &start3, 0, 0); // Display stage prompt
             }
         }
@@ -483,14 +494,14 @@ int main()
             if (bgx >= BG_WIDTH - WINDOW_WIDTH - 1) {
                 bgx = BG_WIDTH - WINDOW_WIDTH - 1;
                 if (stage < 3)
-                    display_asset(frame_buffer, &cont, bgx, 0);
-                else
                     display_asset(frame_buffer, &cont, bgx, 0); // Show stage complete prompt
+                else
+                    display_asset(frame_buffer, &game_complete, bgx, 0); // Show game complete prompt
 
                 if (ammo.isFired) {
                     // Reset/update the necessary variables
                     bgx = 0;
-                    
+
                     player.x = 0;
                     player.y = 0;
                     isContinued = true;
@@ -527,7 +538,7 @@ int main()
                 update_sprite_position(current_mobs, MOB_X_DISPLACEMENT, MOB_Y_DISPLACEMENT, bgx, mob_count); // Update mobs positions
                 update_sprite_position(current_corals, CORAL_X_DISPLACEMENT, CORAL_Y_DISPLACEMENT, bgx, coral_count); // Update corals positions
 
-                display_asset(frame_buffer, &player, 0, 0); // Display player's sprite
+                display_player(frame_buffer, &player, 0, 0); // Display player's sprite
 
                 // Display obstacles
                 for (int i = 0; i < obstacle_count; i++) {
@@ -616,7 +627,7 @@ void key_press_handler(struct mfb_window* window, mfb_key key, mfb_key_mod mod, 
         }
         else if (key == KB_KEY_ENTER && !*(data->stageStarted)) { // Start stage or restart after game over
             if (!(*(data->isGameOver))) // Start stage
-                *(data->stageStarted) = true; 
+                *(data->stageStarted) = true;
 
             if (*(data->isGameOver)) {
                 // Reset the necessary variables
