@@ -72,7 +72,7 @@ int main()
 
     // Declare stage 2 sprites
     // LETTER C
-        Sprite obs2_1 = Sprite(100, 100, 2142, 200, 0, 0, true, FIF_PNG, "assets/stone.png");
+    Sprite obs2_1 = Sprite(100, 100, 2142, 200, 0, 0, true, FIF_PNG, "assets/stone.png");
     Sprite obs2_2 = Sprite(100, 100, 2042, 100, 0, 0, true, FIF_PNG, "assets/stone.png");
     Sprite obs2_3 = Sprite(100, 100, 1942, 0, 0, 0, true, FIF_PNG, "assets/stone.png");
     Sprite obs2_4 = Sprite(100, 100, 1842, 100, 0, 0, true, FIF_PNG, "assets/stone.png");
