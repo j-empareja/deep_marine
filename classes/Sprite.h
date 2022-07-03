@@ -12,10 +12,12 @@ public:
     int x_old;
     int x_initial;
     int xdir;
+    int xdir_initial;
     int y;
     int y_old;
     int y_initial;
     int ydir;
+    int ydir_initial;
     uint8_t* img;
     int pitch;
     bool isVisible;
