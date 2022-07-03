@@ -9,8 +9,8 @@
 
 #define WINDOW_WIDTH            1280
 #define WINDOW_HEIGHT           720
-#define BG_WIDTH                5000
-#define BG_HEIGHT               1000
+#define BG_WIDTH                15000
+#define BG_HEIGHT               720
 #define PLAYER_WIDTH            150
 #define PLAYER_HEIGHT           100
 #define PLAYER_X_DISPLACEMENT   10
@@ -31,6 +31,9 @@ typedef struct
     int* bgx;
     int* bgy;
     bool* stageStarted;
+    bool* restarted;
+    bool* isGameOver;
+    bool* isContinued;
 } game_data;
 
 void key_press_handler(struct mfb_window* window, mfb_key key, mfb_key_mod mod, bool isPressed);
@@ -42,6 +45,6 @@ void check_player_obstacle_collision(Player* player, Sprite* obstacles, int bgx,
 void update_sprite_position(Sprite* sprites, int x_displacement, int y_displacement, int bgx, int sprite_count);
 void check_player_sprite_collision(Player* player, Sprite* sprites, int bgx, int sprite_count, int type);
 void check_ammo_collision(Ammo* ammo, Sprite* entities, int entity_count);
-void reset_sprite_position(Sprite* sprites, int sprite_count);
+void reset_sprite_attributes(Sprite* sprites, int sprite_count);
 
 #endif
