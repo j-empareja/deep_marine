@@ -72,17 +72,17 @@ int main()
 
     // Declare stage 2 sprites
     // LETTER C
-    Sprite obs2_1 = Sprite(100, 100, 2142, 200, 0, 0, true, FIF_PNG, "assets/stone.png");
+    Sprite obs2_1 = Sprite(100, 100, 2142, 200, 0, 0, true, FIF_PNG, "assets/seaweed.png");
     Sprite obs2_2 = Sprite(100, 100, 2042, 100, 0, 0, true, FIF_PNG, "assets/stone.png");
-    Sprite obs2_3 = Sprite(100, 100, 1942, 0, 0, 0, true, FIF_PNG, "assets/stone.png");
+    Sprite obs2_3 = Sprite(100, 100, 1942, 0, 0, 0, true, FIF_PNG, "assets/seaweed.png");
     Sprite obs2_4 = Sprite(100, 100, 1842, 100, 0, 0, true, FIF_PNG, "assets/stone.png");
-    Sprite obs2_5 = Sprite(100, 100, 1742, 200, 0, 0, true, FIF_PNG, "assets/stone.png");
+    Sprite obs2_5 = Sprite(100, 100, 1742, 200, 0, 0, true, FIF_PNG, "assets/seaweed.png");
     Sprite obs2_6 = Sprite(100, 100, 1742, 300, 0, 0, true, FIF_PNG, "assets/stone.png");
-    Sprite obs2_7 = Sprite(100, 100, 1742, 400, 0, 0, true, FIF_PNG, "assets/stone.png");
+    Sprite obs2_7 = Sprite(100, 100, 1742, 400, 0, 0, true, FIF_PNG, "assets/seaweed.png");
     Sprite obs2_8 = Sprite(100, 100, 1842, 500, 0, 0, true, FIF_PNG, "assets/stone.png");
-    Sprite obs2_9 = Sprite(100, 100, 1942, 600, 0, 0, true, FIF_PNG, "assets/stone.png");
+    Sprite obs2_9 = Sprite(100, 100, 1942, 600, 0, 0, true, FIF_PNG, "assets/seaweed.png");
     Sprite obs2_10 = Sprite(100, 100, 2042, 500, 0, 0, true, FIF_PNG, "assets/stone.png");
-    Sprite obs2_11 = Sprite(100, 100, 2142, 400, 0, 0, true, FIF_PNG, "assets/stone.png");
+    Sprite obs2_11 = Sprite(100, 100, 2142, 400, 0, 0, true, FIF_PNG, "assets/seaweed.png");
 
     // LETTER P 
     Sprite obs2_12 = Sprite(100, 100, 3000, 0, 0, 0, true, FIF_PNG, "assets/stone.png");
