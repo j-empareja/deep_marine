@@ -38,17 +38,6 @@ void display_asset(uint32_t* buffer, Sprite* sprite, int x_offset, int y_offset)
     }
 }
 
-Sprite* generate_obstacles() {
-    // Sample
-    Sprite obs1 = Sprite(100, 100, 120, 500, 0, 0, true, FIF_PNG, "assets/obs.png");
-    Sprite obs2 = Sprite(100, 100, 0, 0, 0, 0, true, FIF_PNG, "assets/obs.png");
-    Sprite obs3 = Sprite(100, 100, 3000, 1000, 0, 0, true, FIF_PNG, "assets/obs.png");
-
-    Sprite obstacles[3] = { obs1, obs2, obs3 };
-
-    return obstacles;
-}
-
 void check_player_obstacle_collision(Player* player, Sprite* obstacles, int bgx, int obstacle_count) {
     player->collision = -1; // Reset collision flag
     int player_right = player->x + player->width;
@@ -170,10 +159,12 @@ void check_ammo_collision(Ammo* ammo, Sprite* entities, int entity_count) {
     }
 }
 
-void reset_sprite_position(Sprite* sprites, int sprite_count) {
+void reset_sprite_attributes(Sprite* sprites, int sprite_count) {
     for (int i = 0; i < sprite_count; i++) {
         (sprites + i)->x = (sprites + i)->x_initial;
+        (sprites + i)->xdir = (sprites + i)->xdir_initial;
         (sprites + i)->y = (sprites + i)->y_initial;
+        (sprites + i)->ydir = (sprites + i)->ydir_initial;
         (sprites + i)->isVisible = true;
     }
 }
